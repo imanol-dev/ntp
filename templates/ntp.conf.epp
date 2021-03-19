@@ -2,9 +2,21 @@
       String $driftfile_path
 | -%>
 # NOTE: This file is managed by puppet. Any manual changes will be overwritten.
+
+restrict default nomodify notrap nopeer noquery
+
+restrict 127.0.0.1
+restrict ::1
+
 <% $servers.each |$server| {-%>
 server <%= $server %>
 <% } -%>
+
+includefile /etc/ntp/crypto/pw
+
+keys /etc/ntp/keys
+
+disable monitor
  
 # Drift file.
 driftfile <%= $driftfile_path %>
