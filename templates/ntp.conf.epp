@@ -1,0 +1,10 @@
+<%- | Array[String] $servers,
+      String $driftfile_path
+| -%>
+# NOTE: This file is managed by puppet. Any manual changes will be overwritten.
+<% $servers.each |$server| {-%>
+server <%= $server %>
+<% } -%>
+ 
+# Drift file.
+driftfile <%= $driftfile_path %>
